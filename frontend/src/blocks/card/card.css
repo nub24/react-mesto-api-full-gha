@@ -1,0 +1,11 @@
+.card {
+  max-width: 282px;
+  min-height: 361px;
+  background-color: transparent;
+  display: grid;
+  grid-template-columns: 282px;
+  grid-template-rows: 282px auto;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}

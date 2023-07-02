@@ -1,0 +1,17 @@
+.profile__content {
+  grid-area: content;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: max-content max-content;
+  max-width: 550px;
+  gap: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 650px) {
+  .profile__content {
+    gap: 6px;
+  }
+}
