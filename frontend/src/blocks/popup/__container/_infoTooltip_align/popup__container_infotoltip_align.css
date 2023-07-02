@@ -1,0 +1,4 @@
+.popup__container_infotoltip_align {
+  display: flex;
+  flex-direction: column;
+}
