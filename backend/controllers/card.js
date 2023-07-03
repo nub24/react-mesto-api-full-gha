@@ -12,9 +12,9 @@ module.exports.createCard = (req, res, next) => {
 
   Card.create({ name, link, owner })
     .then((card) => {
-      res
-        .status(CREATED_CODE)
-        .send({ data: card });
+      card
+        .populate('owner')
+        .then(() => res.status(CREATED_CODE).send(card));
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -66,6 +66,7 @@ module.exports.likeCard = (req, res, next) => {
     { $addToSet: { likes: userId } },
     { new: true },
   )
+    .populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
         throw new NotFoundError('Карточка не найдена!');
@@ -92,6 +93,7 @@ module.exports.dislikeCard = (req, res, next) => {
     { $pull: { likes: userId } },
     { new: true },
   )
+    .populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
         throw new NotFoundError('Карточка не найдена!');
