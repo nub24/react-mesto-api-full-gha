@@ -102,8 +102,8 @@ function App() {
             navigate('/');
           }
         })
-        .catch(() => {
-          localStorage.removeItem('token');
+        .catch((err) => {
+          console.log(`Ошибка проверки токена ${err}`);
         })
     }
   },[loggedIn])

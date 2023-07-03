@@ -1,13 +1,8 @@
-import { address, token } from "./constants";
+import { address } from "./constants";
 
 class Api {
   constructor({ address, token }) {
     this._address = address;
-    this._token = token;
-    this._headers = {
-      authorization: this._token,
-      "Content-Type": "application/json",
-    };
   }
 
   //обработка запроса
@@ -32,8 +27,12 @@ class Api {
 
   //получение карточек
   getCards() {
+    const token = localStorage.getItem('token')
     return this._request(`cards`, {
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     })
   }
 
@@ -97,4 +96,4 @@ class Api {
   }
 }
 
-export const api = new Api({ address, token });
+export const api = new Api({ address });

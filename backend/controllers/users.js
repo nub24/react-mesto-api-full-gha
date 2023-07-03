@@ -124,15 +124,10 @@ module.exports.getUserInfo = (req, res, next) => {
   const userId = req.user._id;
   user.findById(userId)
     .then((userData) => {
-      const {
-        _id, email, name, about, avatar,
-      } = userData;
       if (!userData) {
         throw new NotFoundError('Пользователь не найден!');
       }
-      res.send({
-        _id, email, name, about, avatar,
-      });
+      res.send(userData);
     })
     .catch(next);
 };
