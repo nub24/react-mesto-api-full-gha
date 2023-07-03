@@ -1,7 +1,7 @@
 import { address } from "./constants";
 
 class Api {
-  constructor({ address, token }) {
+  constructor({ address }) {
     this._address = address;
   }
 
@@ -20,8 +20,12 @@ class Api {
 
   //получение информации о пользователе с сервера
   getUserInfo() {
+    const token = localStorage.getItem('token');
     return this._request(`users/me`, {
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     })
   }
 
@@ -50,17 +54,25 @@ class Api {
 
   //простановка лайка
   _putLike(id) {
+    const token = localStorage.getItem('token')
     return this._request(`cards/${id}/likes`, {
       method: "PUT",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     })
   }
 
   //удоление лайка
   _delLike(id) {
+    const token = localStorage.getItem('token')
     return this._request(`cards/${id}/likes`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     })
   }
 

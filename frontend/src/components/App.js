@@ -97,7 +97,7 @@ function App() {
         .checkToken(token)
         .then((res) => {
           if (res) {
-            setLoggedEmail(res.data.email);
+            setLoggedEmail(res.email);
             setLoggedIn(true);
             navigate('/');
           }
@@ -106,7 +106,7 @@ function App() {
           console.log(`Ошибка проверки токена ${err}`);
         })
     }
-  },[loggedIn])
+  },[])
 
   function handleUpdateUser({ name, about }) {
     setIsLoading(true);

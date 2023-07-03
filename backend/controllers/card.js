@@ -73,7 +73,7 @@ module.exports.likeCard = (req, res, next) => {
       }
       res
         .status(OK_CODE)
-        .send({ data: card });
+        .send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -100,7 +100,7 @@ module.exports.dislikeCard = (req, res, next) => {
       }
       return res
         .status(OK_CODE)
-        .send({ data: card });
+        .send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
