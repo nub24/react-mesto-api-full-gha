@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:3000";
+export const BASE_URL = "https://api.smilex249.students.nomoreparties.sbs";
 
 const request = (url, options) => {
   const fetchAddress = `${BASE_URL}/${url}`;
