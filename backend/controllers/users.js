@@ -21,9 +21,7 @@ module.exports.createUser = (req, res, next) => {
       const { _id } = userData;
       res
         .status(CREATED_CODE)
-        .send({
-          _id, email, name, about, avatar,
-        });
+        .send({ data: { _id, email } });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -122,10 +120,15 @@ module.exports.getUserInfo = (req, res, next) => {
   const userId = req.user._id;
   user.findById(userId)
     .then((userData) => {
+      const {
+        _id, email, name, about, avatar,
+      } = userData;
       if (!userData) {
         throw new NotFoundError('Пользователь не найден!');
       }
-      res.send({ data: userData });
+      res.send({
+        _id, email, name, about, avatar,
+      });
     })
     .catch(next);
 };

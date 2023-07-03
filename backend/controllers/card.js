@@ -28,10 +28,10 @@ module.exports.createCard = (req, res, next) => {
 module.exports.getCards = (_, res, next) => {
   Card.find({})
     .populate(['owner', 'likes'])
-    .then((card) => {
+    .then((cards) => {
       res
         .status(OK_CODE)
-        .send({ data: card });
+        .send(cards);
     })
     .catch(next);
 };
