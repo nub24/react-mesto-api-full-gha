@@ -11,6 +11,5 @@
 
 IP 158.160.19.224
 
-Frontend https://...
-
-Backend https://...
+Frontend https://smilex249.students.nomoreparties.sbs
+Backend https://api.smilex249.students.nomoreparties.sbs
