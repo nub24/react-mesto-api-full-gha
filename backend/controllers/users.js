@@ -76,7 +76,7 @@ module.exports.updateProfile = (req, res, next) => {
       if (!userData) {
         throw new NotFoundError('Пользователь не найден!');
       }
-      res.send({ data: userData });
+      res.send(userData);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -96,7 +96,7 @@ module.exports.updateAvatar = (req, res, next) => {
       if (!userData) {
         throw new NotFoundError('Пользователь не найден!');
       }
-      res.send({ data: userData });
+      res.send(userData);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {

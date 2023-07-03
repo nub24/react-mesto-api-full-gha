@@ -42,9 +42,13 @@ class Api {
 
   //передача карточки на сервер
   postCard({ name, link }) {
+    const token = localStorage.getItem('token')
     return this._request(`cards`, {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         name,
         link,
@@ -66,7 +70,7 @@ class Api {
 
   //удоление лайка
   _delLike(id) {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
     return this._request(`cards/${id}/likes`, {
       method: "DELETE",
       headers: {
@@ -83,27 +87,39 @@ class Api {
 
   //удаление карточки
   delCard(id) {
+    const token = localStorage.getItem('token');
     return this._request(`cards/${id}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     })
   }
 
   //передача информации о пользователе на сервер
   patchProfile({ name, about }) {
+    const token = localStorage.getItem('token');
     return this._request(`users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ name, about }),
     })
   }
 
   //передача аватарки на сервер
   patchAvatar(avatar) {
+    const token = localStorage.getItem('token');
     return this._request(`users/me/avatar`, {
       method: "PATCH",
       body: JSON.stringify({ avatar }),
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     })
   }
 }

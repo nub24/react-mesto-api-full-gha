@@ -106,7 +106,7 @@ function App() {
           console.log(`Ошибка проверки токена ${err}`);
         })
     }
-  },[])
+  },[loggedIn])
 
   function handleUpdateUser({ name, about }) {
     setIsLoading(true);
