@@ -21,7 +21,11 @@ module.exports.createUser = (req, res, next) => {
       const { _id } = userData;
       res
         .status(CREATED_CODE)
-        .send({ data: { _id, email } });
+        .send({
+          data: {
+            _id, email, name, about, avatar,
+          },
+        });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
