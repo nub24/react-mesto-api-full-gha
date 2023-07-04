@@ -8,6 +8,8 @@ const ConflictError = require('../errors/conflictError');
 
 const { OK_CODE, CREATED_CODE } = require('../utils/constants');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 module.exports.createUser = (req, res, next) => {
   const {
     email, password, name, about, avatar,
@@ -113,7 +115,7 @@ module.exports.login = (req, res, next) => {
   return user.findUserByCredentials(email, password)
     .then((userData) => {
       if (userData) {
-        const token = jwt.sign({ _id: userData._id }, 'very-secret-key', { expiresIn: '7d' });
+        const token = jwt.sign({ _id: userData._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
         res.send({ token });
       }
     })
